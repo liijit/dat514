@@ -94,39 +94,49 @@ export default class UserRegister extends Component {
     render() {
         return (
 		<div className="menucontainer">
-	        <div className="container nopad">
-	            <div className="flexy">
-	                <div className="menu">
-	                    <div className="column">
-	                        <div className="row logo-c">
-	                            <Logo/>
-	                        </div>
-	                        <div className="column">
-	                            <form onSubmit={this.onSubmit}>
+		    <div className="container nopad">
+		        <div className="flexy">
+		            <div className="menu">
+		                <div className="column">
+		                    <div className="row logo-c">
+		                        <Logo />
+		                    </div>
+		                    <div className="column">
+		                        <form onSubmit={this.onSubmit}>
 		                            <div className="labelcont">
-		                                <label className="label" htmlFor="username"><p>USERNAME</p></label>
-		                                <label className="labelres" onChange={this.onChangeRes}><p>{this.state.res}</p></label>
+		                                <label className="label" htmlFor="username">
+		                                    <p>USERNAME</p>
+		                                </label>
+		                                <label className="labelres" onChange={this.onChangeRes}>
+		                                    <p>{this.state.res}</p>
+		                                </label>
 		                            </div>
-		                            <input type="text" id="usernameField" value={this.state.username} onChange={this.onChangeUsername}/>
+		                            <input type="text" id="usernameField" value={this.state.username} onChange={this.onChangeUsername} />
 		                            <div className="labelcont">
-		                                <label className="label"><p>EMAIL</p></label>
+		                                <label className="label">
+		                                    <p>EMAIL</p>
+		                                </label>
 		                            </div>
-		                            <input type="text" id="emailField" value={this.state.email} onChange={this.onChangeEmail}/>
+		                            <input type="text" id="emailField" value={this.state.email} onChange={this.onChangeEmail} />
 		                            <div className="labelcont">
-			                            <label className="label"><p>PASSWORD</p></label>
-									</div>
-		                            <input type="password" id="passwordField" value={this.state.password} onChange={this.onChangePassword}/>
-									<div className="labelcont">
-			                            <label className="label"><p>RETYPE PASSWORD</p></label>
-									</div>
-									<input type="password" id="retypepasswordField" value={this.state.retypepassword} onChange={this.onChangeRetypePassword}/>
+		                                <label className="label">
+		                                    <p>PASSWORD</p>
+		                                </label>
+		                            </div>
+		                            <input type="password" id="passwordField" value={this.state.password} onChange={this.onChangePassword} />
+		                            <div className="labelcont">
+		                                <label className="label">
+		                                    <p>RETYPE PASSWORD</p>
+		                                </label>
+		                            </div>
+		                            <input type="password" id="retypepasswordField" value={this.state.retypepassword} onChange={this.onChangeRetypePassword} />
 		                            <button className="buttonW b1" type="submit" value="login">Create an Account</button>
-	                            </form>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+		                        </form>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 		    <div className="background">
 		    </div>
 		</div>

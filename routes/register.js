@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const user = require('../models/user.model');
 
-router.route('/').get((req, res) => {
-    user.find()
-        .then(user => res.json(user))
-        .catch(err => res.status(400).json('Error: ' + err));
-})
-
 function existenceValidator(e) {
     //return a promise value based on the corresponding value passed in
      return new Promise((resolve, reject) => {
