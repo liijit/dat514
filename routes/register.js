@@ -7,7 +7,7 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 })
 
-function existenceLoop(e) {
+function existenceValidator(e) {
     //return a promise value based on the corresponding value passed in
      return new Promise((resolve, reject) => {
         //query user database with the parsed values for the relevant account
@@ -25,7 +25,6 @@ function existenceLoop(e) {
                 ]
             }), (err, obj) => {
                 //findOne parses account object or a "null" response if the query fails 
-                    console.log('test')
                 if(obj === null){
                     return resolve(e+' doesnt exist')
                 } else {
@@ -35,11 +34,11 @@ function existenceLoop(e) {
         })
 }
 
-function dbExistenceValidator(...args) {
+function existenceValidatorLoop(...args) {
     const proms = [];
     //iterate through the 'args' array and push promise states to 'proms' array
     for(let i = 0; i < args.length; i++) {
-        proms.push(existenceLoop(args[i]))
+        proms.push(existenceValidator(args[i]))
     }
     //returns a state
     return Promise.all(proms)
@@ -48,7 +47,7 @@ function dbExistenceValidator(...args) {
 function emailValidator(e) {
     //return a promise value based on the corresponding value passed in
     return new Promise((resolve, reject) => {
-        //checks that both "@" and "." ares in the email string
+        //checks that both "@" and "." are within the parsed argument
         if (e.includes('@', '.') === true) {
             return resolve('Correct email format')
         } else {
@@ -60,25 +59,38 @@ function emailValidator(e) {
 function fieldValidator(...args) {
     return new Promise((resolve, reject) => {
         for(let i = 0; i < args.length; i++){
-            if (args[i] === null) {
-                return reject('Fill in all Fields')
-            }
+            //if a parsed argument is empty, revoke
+            if (args[i] === "") {
+                return reject('Missing Fields')
+            } else {
+                return resolve('Fields Fulfilled')
+        }
         }
     })
 }
 
-router.route('/').post((req, res) => {
+function fieldValidatorLoop(...args) {
+    const proms = [];
+    //iterate through the 'args' array and push promise states to 'proms' array
+    for(let i = 0; i < args.length; i++) {
+        proms.push(fieldValidator(args[i]))
+    }
+    //returns a state
+    return Promise.all(proms)
+}
+
+router.post('/', (req, res) => {
     //initialise variables and apply defined keys from post request
     const { username, email, password } = req.body;
-    let prom1, prom2, prom3
-    //assign returned promise values to the variables
-    prom1 = fieldValidator(username, email, password);
-    prom2 = emailValidator(email);
-    prom3 = dbExistenceValidator(username, email);
-    //waits for all promises to be fulfilled before proceeding to .then
-    Promise.all([prom1, prom2, prom3]) 
+    const checkerAsync = async () => {
+    //anything below each await statement is added to a 'microtask' queue
+    //executes each function in a sequence, returns promise values from functions
+        await fieldValidatorLoop(username, email, password);
+        await emailValidator(email);
+        await existenceValidatorLoop(username, email);
+    }
+    checkerAsync()
         .then(result => {
-            console.log(result)
             console.log('User added!')
             let newAccount = new user({ username, email, password })
             newAccount.save()
