@@ -12,6 +12,8 @@ const port = process.env.PORT;
 const uri = process.env.MONGOCOMPASS_URI || process.env.MONGOATLAS_URI;
 
 //initialise and assign variables with route files
+
+const globalFuncs = require('./routes/globalFuncs')
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register')
 
