@@ -16,6 +16,7 @@ const uri = process.env.MONGOCOMPASS_URI || process.env.MONGOATLAS_URI;
 const globalFuncs = require('./routes/globalFuncs')
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register')
+const deleteRouter = require('./routes/delete')
 
 //exposes incoming json requests to the req.body 
 app.use(express.json());
@@ -28,6 +29,7 @@ app.listen(port, () => {
 //let express assign a middleware address to each route
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/delete', deleteRouter);
 
 //heroku will have set 'NODE_ENV' value to 'production'
 //this will build our front end react app when pushing the entire project
