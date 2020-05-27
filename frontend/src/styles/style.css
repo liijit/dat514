@@ -4,9 +4,13 @@ body {
     height: 100vh;
 }
 
-form, label, blockquote, dl, figure, form, ol, p, pre, table, ul {
+form, label, blockquote, dd, dt, dl, figure, form, ol, p, pre, table, ul, li {
     margin: 0;
     padding: 0;
+}
+
+button{
+    margin-bottom: 0;
 }
 
 .root{
@@ -72,6 +76,21 @@ form, label, blockquote, dl, figure, form, ol, p, pre, table, ul {
     height: inherit;
 }
 
+.flexy2 {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    /*width: inherit;*/
+    height: inherit;
+}
+
+.flexy3 {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: inherit;
+}
+
 
 .menu {
     padding: 50px 50px;
@@ -96,7 +115,10 @@ form, label, blockquote, dl, figure, form, ol, p, pre, table, ul {
     align-items: center;
 }
 
-.logo {}
+.logo {
+    width: 8%;
+    display: flex;
+}
 
 .buttonW {
     width: 100%;
@@ -129,19 +151,39 @@ form, label, blockquote, dl, figure, form, ol, p, pre, table, ul {
     margin-top: 40px;
 }
 
+/*NAVIGATION*/
+
+.nav {
+    width: 200px;
+}
+
 .navigation {
     z-index:100;
     width: 100%;
     position: absolute;
+    height: 80px;
+    flex-direction: row;
 }
 
 .navigation_list {
-  border-bottom: solid 1px #ccc;
-  padding: 5px 0px;
-  text-align: center;
+    height: 100%;
+    border-bottom: solid 1px #ccc;
+    padding: 5px 0px;
+    text-align: center;
+
+    justify-content: center;
+justify-content: center;
+    align-items: center;
+    display: flex;
+    width: inherit;
+    height: inherit;}
+
+.itemCont {
+    height: inherit;
+    position: flex;
 }
+
 .navigation_item {
-  display: inline;
-  list-style: none;
-  margin: 0 20px;
+    list-style: none;
+    margin: 0 20px;
 }
