@@ -116,7 +116,7 @@ button{
 }
 
 .logo {
-    width: 8%;
+    height: 90%;
     display: flex;
 }
 
@@ -161,7 +161,7 @@ button{
     z-index:100;
     width: 100%;
     position: absolute;
-    height: 80px;
+    height: 50px;
     flex-direction: row;
 }
 

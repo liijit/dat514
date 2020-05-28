@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
         //continue the flow of the code
         next();
     } catch (err) {
-        res.status(500).json(err.message)
+        res.json(err)
     }
 }
 

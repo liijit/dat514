@@ -54,7 +54,7 @@ export default class UserRegister extends Component {
 	}
 	onChangeRetypePassword = e => {
 		this.setState({
-			res: e.target.value
+			retypepassword: e.target.value
 		});
 	}
 	onChangeRes = e => {
@@ -72,6 +72,7 @@ export default class UserRegister extends Component {
 			username: this.state.username,
 			email: this.state.email,
 			password: this.state.password,
+			retypepassword: this.state.retypepassword
 		}
 
 		//attempt a post request and parse 'user' object

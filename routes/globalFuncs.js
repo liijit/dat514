@@ -15,7 +15,7 @@ fieldValidator = e => {
                         field: i
                 })
                 } else {
-                    resolve(i +'. Field filled ')
+                    resolve({msg: i +'. Field filled'})
                 }   
             })
         )

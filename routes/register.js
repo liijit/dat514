@@ -22,11 +22,11 @@ queryAccount = e => {
                 //findOne parses account object or a "null" response if the query fails
                 //compares the parsed object username and email with req.body request data
                 if(obj === null){
-                    resolve('User doesnt exist')
+                    resolve({msg: 'User doesnt exist'})
                 } else if (e.username === obj.username) {
-                    reject('User already exists')
+                    reject({msg: 'User already exists'})
                 } else if (e.email === obj.email) {
-                    reject('Email is already registered') 
+                    reject({msg: 'Email is already registered'}) 
                 }
             })
         })
@@ -37,9 +37,9 @@ emailValidator = e => {
     return new Promise((resolve, reject) => {
         //checks that both "@" and "." are within the parsed argument
         if (e.includes('@', '.') === true) {
-            resolve('Correct email format')
+            resolve({msg: 'Correct email format'})
         } else {
-            reject('Incorrect email format')
+            reject({msg: 'Incorrect email format'})
         }
     })
 }
@@ -47,17 +47,17 @@ emailValidator = e => {
 passwordValidator = e => {
     let prom1 = new Promise((resolve, reject) => {
         if(e.password.length < 5) {
-            reject('Password must be longer then 5 characters')
+            reject({msg: 'Password must be longer then 5 characters'})
         } else {
-            resolve('Password length valid')
+            resolve({msg: 'Password length valid'})
         }
     })
 
     let prom2 = new Promise((resolve, reject) => {
         if(e.password !== e.passwordVal) {
-            reject("Passwords don't match")
+            reject({msg: "Passwords don't match"})
         } else {
-            resolve('Passwords match')
+            resolve({msg: 'Passwords match'})
         }
     })
     //returns a promise state
@@ -91,7 +91,7 @@ router.post('/', (req, res) => {
             let newAccount = new user({ username, email, password:passHash })
             newAccount.save()
             //Adds the user to the accounts database
-                .then(() => res.json('User {'+username+'} added!'))
+                .then(() => res.json({msg: 'Registered User'}))
                 .catch(err => res.status(400).json(err))
         })
         .catch(err => {

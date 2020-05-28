@@ -24,11 +24,11 @@ usernameQueryAccount = (e) => {
                 //findOne parses account object or a "null" response if the query fails
                 //compares the parsed object username and email with req.body request data
                 if(obj === null || obj === undefined){
-                    reject("User doesn't exist")
+                    reject({msg: "User doesn't exist"})
                 } else if (e === obj.username || e === obj.email) {
                     resolve(obj)
                 } else {
-                	reject('Invalid credentials')
+                	reject({msg: 'Invalid Credentials'})
                 }
                 
             })
@@ -40,10 +40,10 @@ passwordMatch = (...args) => {
 		//compares the hashed password with the user password request
 		res = await bcrypt.compare(args[0], args[1].password)
 		if (!res) {
-			reject('Incorrect credentials')
+			reject({msg: 'Incorrect credentials'})
+
 		} else {
-			console.log('Authenticated successfully')
-			resolve('Authenticated successfully')
+			resolve({msg: 'Authenticated successfully'})
 		}
 	})
 }
