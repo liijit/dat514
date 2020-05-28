@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     height: 100vh;
     align-items: center;
-    color: #EFFFFA;
+    color: unset;
     font-family: Arial, "Segoe UI", Helvetica, sans-serif;
     justify-content: center;
     text-rendering: optimizeLegibility;
@@ -76,6 +76,13 @@ export const GlobalStyles = createGlobalStyle`
 .container {
     height: inherit;
     width: inherit;
+}
+
+.dashContainer {
+    height: inherit;
+    width: 18rem;
+    padding: 10rem 0 2rem 0rem;
+
 }
 
 .nopad {
@@ -165,6 +172,20 @@ export const GlobalStyles = createGlobalStyle`
     margin-top: 40px;
 }
 
+.plantList {
+    padding-top: 3rem;
+}
+
+.plantList ul{
+    list-style-type: none;
+}
+
+.plants p {
+    color: black;
+    font-style: bold;
+    font-size: 2.5rem;
+}
+
 @media (max-width: ${({ theme }) => theme.mobile}) { 
     .menu {
     padding: 50px 50px;
@@ -175,5 +196,8 @@ export const GlobalStyles = createGlobalStyle`
     border-width: unset;
     border-style: unset;
 }
+
+
+
 }
   `

@@ -9,6 +9,7 @@ import { Burger, Menu } from './styles/js/components/index';
 
 import UserLogin from "./components/auth/login.component";
 import UserRegister from "./components/auth/register.component";
+import UserDashboard from "./components/dashboard.component";
 
 function App() {
 	//create state that handles if the menu is activated
@@ -23,6 +24,7 @@ function App() {
 						<Switch>
 				  			<Route path="/register" component={UserRegister} />
 				  			<Route path="/login" component={UserLogin} />
+				  			<Route path="/dashboard" component={UserDashboard} />
 				  		</Switch>
 	  	</ThemeProvider>
   	</Router>

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
 
@@ -37,6 +38,11 @@ app.use('/plants', plantsRouter);
 //this will build our front end react app when pushing the entire project
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'))
+
+    app.get('*', (req, res) => {
+    	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+
 }
 
 //attempt connection to database using mongoose

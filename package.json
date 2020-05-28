@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "build": "cd frontend && npm run build",
-    "heroku-postbuild": "npm run install-frontend && npm run build",
     "client-install": "npm install --prefix frontend",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
