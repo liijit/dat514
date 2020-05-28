@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./libraries/milligram.min.css";
-import "./styles/style.css";
+//theme provider provides a theme to all react components
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './styles/js/global';
+import { theme } from './styles/js/themes';
+import { Burger, Menu } from './styles/js/components/index';
 
-import Navbar from "./components/navbar.component";
 import UserLogin from "./components/auth/login.component";
 import UserRegister from "./components/auth/register.component";
 
 function App() {
+	//create state that handles if the menu is activated
+	const [open, setOpen] = useState(false)
+
     return (
 	<Router>
-		<Navbar />
-			<Switch>
-	  			<Route path="/register" component={UserRegister} />
-	  			<Route path="/login" component={UserLogin} />
-	  		</Switch>
+		<ThemeProvider theme={theme}>
+			<GlobalStyles />
+				<Menu open={open} setOpen={setOpen}/>
+					<Burger open={open} setOpen={setOpen}/>
+						<Switch>
+				  			<Route path="/register" component={UserRegister} />
+				  			<Route path="/login" component={UserLogin} />
+				  		</Switch>
+	  	</ThemeProvider>
   	</Router>
     );
 }

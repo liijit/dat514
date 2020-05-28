@@ -3,8 +3,6 @@ const axios = require('axios')
 const auth = require('../middleware/auth');
 const Plant = require('../models/plants.model')
 
-
-
 router.post('/auth', auth, async (req, res) => {
     try {
         //trefle will return a jwt signed token by using private access token
@@ -17,7 +15,7 @@ router.post('/auth', auth, async (req, res) => {
     }
 })
 
-router.get('/plants', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         Plant.find()
             .sort({ date: -1 })
@@ -27,7 +25,21 @@ router.get('/plants', async (req, res) => {
     }
 })
 
-router.post('/queryPlantList', async (req, res) => {
+router.post('/', (req, res) => {
+	 const newPlant = new Plant({
+	 	name: req.body.name
+	 });
+	 newPlant.save().then(result => res.json(result));
+})
+
+router.delete('/:id', (req, res) => {
+	Plant.findById(req.params.id)
+	.then(plant => plant.remove()
+		.then(() => res.json(true)))
+		.catch(err => res.status(500).json(false))
+})
+
+router.post('/queryList', async (req, res) => {
     try {
         const { name } = req.body;
         //trefle will return a jwt signed token by using private access token

@@ -9,11 +9,9 @@ const plantSchema = new Schema ({
 	},
 	duration: {
 		type: String,
-		required: true
 	},
 	family_name: {
 		type: String,
-		required: true
 	},
 	date: {
 		type: Date,
